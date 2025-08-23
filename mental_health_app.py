@@ -201,11 +201,15 @@ with right:
         "social_support_score": msp_total
     }])
 
+    import joblib
+    import streamlit as st
+
     try:
-        model = joblib.load("best_pipeline_XGBoost.pkl")
-    except Exception:
-        st.error("Could not load model file 'best_pipeline_XGBoost.pkl'. Place it in the same folder as this app.")
-        st.stop()
+         model = joblib.load("best_pipeline_XGBoost.pkl")
+    except Exception as e:
+         st.error(f"Could not load model file. Error: {e}")
+         st.stop()
+
 
     label_map = {0: "Low", 1: "Medium", 2: "High"}
 
